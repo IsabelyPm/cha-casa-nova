@@ -1,5 +1,5 @@
 const loading = document.getElementById("loading-lista");
-loading.style.display = "flex";
+
 const URL = "https://script.google.com/macros/s/AKfycbwQlWVTwTanSZveoJpC4RHQMHEdrRbcF9TFnK_VTEnt9KearcGZ7lTzzMZhmdvg35U/exec";
 const iconesPorItem = {
   // COZINHA
