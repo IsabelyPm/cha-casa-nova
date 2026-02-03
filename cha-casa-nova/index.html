@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Chá de Casa Nova</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Font Awesome: objetos específicos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<body>
+  <!-- Linha com imagens + título -->
+  <div class="topo-titulo">
+    <img src="flor1.png" alt="decoracao esquerda">
+    
+<section class="convite">
+  <h1>CHÁ DE CASA NOVA</h1>
+  <h2>Maria Eduarda & Lukas</h2>
+</section>
+<section class="detalhes-evento">
+
+
+   
+    <img src="flor1.png" alt="decoracao direita">
+  </div>
+
+<div class="versiculo-container"> <!-- Separador com versículo -->
+<p class="versiculo">"O pequeno se tornará mil, o menor, uma nação poderosa. Eu sou o Senhor; na hora certa farei que isso aconteça depressa." <br>Isaías 60:22</span>
+  </p>
+</div> 
+  <!-- Separador com horário -->
+  <div class="separador">
+    <span>Sábado, às 20h00</span>
+  </div>
+
+  <!-- Data grande com corações -->
+  <div class="data-evento">
+   
+    <strong>11 ♡ ABRIL ♡ 2026</strong>
+ 
+  </div>
+
+  <!-- Linha final -->
+  <div class="linha-final"></div>
+  <div class="acoes">
+
+  <button class="acao-btn" onclick="toggleBox('mapa')">
+    📍 Localização
+  </button>
+
+  <button class="acao-btn" onclick="toggleBox('presenca')">
+    🤍 Confirmar presença
+  </button>
+
+  <button class="acao-btn" onclick="toggleBox('pix')">
+    💝 Presentear com Pix
+  </button>
+
+</div>
+
+<!-- CAIXAS -->
+
+<div id="mapa" class="acao-box">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3702.8189026181326!2d-47.407114!3d-21.86452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDUxJzUyLjMiUyA0N8KwMjQnMjUuNiJX!5e0!3m2!1spt-BR!2sbr!4v1770152974135!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
+<div id="presenca" class="acao-box presenca-box">
+  <input type="text" id="nomePresenca" placeholder="Digite seu nome">
+  <button onclick="confirmarPresenca()">Eu vou 🤍</button>
+</div>
+<div id="popup" class="popup">
+  <div class="popup-content">
+    💖<br>
+    Obrigada por confirmar sua presença!
+  </div>
+</div>
+
+<div id="pix" class="acao-box pix-box">
+  <div class="pix-header">
+    <img src="pix-logo.png" alt="Pix">
+    <div>
+      <strong>Maria Eduarda</strong>
+      <span>Chave Pix</span>
+    </div>
+  </div>
+
+  <div class="pix-chave">387218968-31</div>
+
+  <button class="pix-copy" onclick="copiarPix()">Copiar código Pix</button>
+  <span id="msgPix"></span>
+</div>
+<div class="paleta-container">
+  <h2 class="titulo-paleta">Paleta de cores</h2>
+
+  <div class="paleta-cores">
+    <div class="cor-item">
+      <div class="cor branco"></div>
+      <span>Branco</span>
+    </div>
+
+    <div class="cor-item">
+      <div class="cor preto"></div>
+      <span>Preto</span>
+    </div>
+
+    <div class="cor-item">
+      <div class="cor cinza"></div>
+      <span>Cinza</span>
+    </div>
+
+    <div class="cor-item">
+      <div class="cor inox"></div>
+      <span>Inox</span>
+    </div>
+
+    <div class="cor-item">
+      <div class="cor creme"></div>
+      <span>Creme</span>
+    </div>
+   
+  </div>
+</div>
+<div id="loading-lista" class="loading-container">
+  <div class="loading-text">
+    Carregando lista de presentes
+  </div>
+  <div class="loading-spinner"></div>
+</div>
+
+<div id="lista"></div>
+</section>
+<section id="lista"></section>
+
+<script src="script.js"></script>
+</body>
+</html>
