@@ -136,15 +136,15 @@ if (selecionado) {
     if (!nomeUsuario) return;
 
     try {
- await fetch(URL, {
+ const formData = new FormData();
+formData.append("tipo", "presente");
+formData.append("categoria", categoria);
+formData.append("item", item);
+formData.append("nome", nomeUsuario);
+
+await fetch(URL, {
   method: "POST",
-  cache: "no-store",
-  body: JSON.stringify({
-    tipo: "presente",
-    categoria: categoria,
-    item: item,
-    nome: nomeUsuario
-  })
+  body: formData
 });
       // 👉 Atualiza visualmente SÓ este item
       itemDiv.classList.add("selecionado");
@@ -183,13 +183,13 @@ function confirmarPresenca() {
   const nome = document.getElementById("nomePresenca").value.trim();
   if (!nome) return;
 
+const formData = new FormData();
+formData.append("tipo", "presenca");
+formData.append("nome", nome);
+
 fetch(URL, {
   method: "POST",
-  cache: "no-store",
-  body: JSON.stringify({
-    tipo: "presenca",
-    nome: nome
-  })
+  body: formData
 })
 .then(res => res.text())
 .then(txt => console.log("RETORNO:", txt))
