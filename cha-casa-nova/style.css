@@ -681,11 +681,12 @@ h2 {
 #overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0, 0, 0, 0.55);
   display: none;
-  align-items: center;
   justify-content: center;
-  z-index: 999;
+  align-items: flex-start; /* 👈 NÃO é center */
+  padding-top: 8vh;       /* 👈 controla o “quão pra cima” */
+  z-index: 9999;
 }
 
 #overlay.ativo {
@@ -695,9 +696,9 @@ h2 {
 #popupPresente {
   background: #fff;
   border-radius: 22px;
-  padding: 32px;
+  padding: 45px;
   width: 92%;
-  max-width: 420px;
+  max-width: 560px;
   box-shadow: 0 25px 50px rgba(0,0,0,.3);
   animation: zoomIn .3s ease;
 }
@@ -736,10 +737,14 @@ h2 {
     padding: 28px;
   }
 
-  #popupPresente input {
-    font-size: 18px;
-    padding: 16px;
-  }
+ #popupPresente input {
+  width: 100%;
+  padding: 16px;
+  font-size: 18px;
+  border-radius: 14px;
+  border: 1px solid #c9b199;
+  outline: none;
+}
 
   #popupPresente button {
     font-size: 18px;

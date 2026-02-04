@@ -242,7 +242,9 @@ async function confirmarPresente() {
     console.error(e);
   }
 }
-document.getElementById("overlay").addEventListener("click", () => {
+document.getElementById("overlay").addEventListener("click", (e) => {
   document.getElementById("popupPresente").style.display = "none";
-  document.getElementById("overlay").style.display = "none";
+  if (e.target.id === "overlay") {
+    document.getElementById("overlay").style.display = "none";
+  }
 });
