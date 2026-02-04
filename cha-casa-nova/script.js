@@ -140,38 +140,34 @@ itemDiv.addEventListener("click", (e) => {
   const popup = document.getElementById("popupPresente");
   const overlay = document.getElementById("overlay");
 
- overlay.style.display = "block";
-popup.style.display = "block";
+  overlay.style.display = "block";
+  popup.style.display = "block";
 
-// 📱 MOBILE → CENTRAL FIXO
-if (window.innerWidth < 768) {
-  popup.style.position = "fixed";
-  popup.style.left = "50%";
-  popup.style.top = "50%";
-  popup.style.transform = "translate(-50%, -50%)";
-  return;
-}
+  // 📱 MOBILE → SEMPRE CENTRALIZADO
+  if (window.innerWidth < 768) {
+    popup.style.left = "50%";
+    popup.style.top = "50%";
+    popup.style.transform = "translate(-50%, -50%)";
+    return;
+  }
 
-// 🖥️ DESKTOP → PERTO DO CLIQUE
-popup.style.position = "absolute";
+  // 🖥️ DESKTOP → PERTO DO CLIQUE
+  let x = e.clientX;
+  let y = e.clientY;
 
-let x = e.clientX;
-let y = e.clientY;
+  const popupWidth = 360;
+  const popupHeight = 260;
 
-const popupWidth = popup.offsetWidth;
-const popupHeight = popup.offsetHeight;
+  if (x + popupWidth > window.innerWidth) {
+    x = window.innerWidth - popupWidth - 20;
+  }
 
-if (x + popupWidth > window.innerWidth) {
-  x = window.innerWidth - popupWidth - 20;
-}
-if (y + popupHeight > window.innerHeight) {
-  y = window.innerHeight - popupHeight - 20;
-}
+  if (y + popupHeight > window.innerHeight) {
+    y = window.innerHeight - popupHeight - 20;
+  }
 
-popup.style.left = `${x}px`;
-popup.style.top = `${y}px`;
-popup.style.transform = "none";
-
+  popup.style.left = `${x}px`;
+  popup.style.top = `${y}px`;
 });
 }
 
@@ -272,17 +268,8 @@ async function confirmarPresente() {
     alert("Erro ao salvar. Tente novamente.");
     console.error(e);
   }
-  
-  
 }
-document.addEventListener("DOMContentLoaded", () => {
-  const overlay = document.getElementById("overlay");
-  const popup = document.getElementById("popupPresente");
-
-  if (overlay && popup) {
-    overlay.addEventListener("click", () => {
-      popup.style.display = "none";
-      overlay.style.display = "none";
-    });
-  }
+document.getElementById("overlay").addEventListener("click", () => {
+  document.getElementById("popupPresente").style.display = "none";
+  document.getElementById("overlay").style.display = "none";
 });
