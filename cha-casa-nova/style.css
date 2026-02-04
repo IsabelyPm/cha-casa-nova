@@ -689,26 +689,33 @@ h2 {
   }
 
 }
-#popupPresente {
-  position: fixed; /* 🔥 essencial */
-  top: 0;
-  left: 0;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-
-  background: #fff;
-  border-radius: 20px;
-  padding: 24px;
-  width: 90%;
-  max-width: 340px;
-
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(2px);
   display: none;
-  animation: popupIn 0.35s ease;
+  z-index: 999;
+}
+
+#overlay.ativo {
+  display: block;
+}
+
+#popupPresente {
+  position: fixed;
+  background: #fff;
+  border-radius: 18px;
+  padding: 22px;
+  width: 90%;
+  max-width: 360px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.2);
+  display: none;
+  z-index: 1000;
 }
 
 #popupPresente.ativo {
-  display: flex;
+  display: block;
 }
 
 #popupPresente .popup-content {
