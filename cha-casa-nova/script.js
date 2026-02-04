@@ -138,11 +138,23 @@ itemDiv.addEventListener("click", (e) => {
   window.itemDivAtual = itemDiv;
 
   const popup = document.getElementById("popupPresente");
+  const overlay = document.getElementById("overlay");
 
+  overlay.style.display = "block";
+  popup.style.display = "block";
+
+  // 📱 MOBILE → SEMPRE CENTRALIZADO
+  if (window.innerWidth < 768) {
+    popup.style.left = "50%";
+    popup.style.top = "50%";
+    popup.style.transform = "translate(-50%, -50%)";
+    return;
+  }
+
+  // 🖥️ DESKTOP → PERTO DO CLIQUE
   let x = e.clientX;
   let y = e.clientY;
 
-  // 🛡️ proteção para não sair da tela
   const popupWidth = 360;
   const popupHeight = 260;
 
@@ -153,15 +165,9 @@ itemDiv.addEventListener("click", (e) => {
   if (y + popupHeight > window.innerHeight) {
     y = window.innerHeight - popupHeight - 20;
   }
-if (window.innerWidth < 768) {
-  popup.style.left = "50%";
-  popup.style.top = "50%";
-  popup.style.transform = "translate(-50%, -50%)";
-  return;
-}
+
   popup.style.left = `${x}px`;
   popup.style.top = `${y}px`;
-  popup.style.display = "block";
 });
 }
 
@@ -242,6 +248,7 @@ async function confirmarPresente() {
     await fetch(URL, {
       method: "POST",
       body: formData
+      
     });
 
     // atualiza visual do item
@@ -261,11 +268,10 @@ async function confirmarPresente() {
     alert("Erro ao salvar. Tente novamente.");
     console.error(e);
   }
+  
+  document.getElementById("overlay").style.display = "none";
 }
-document
-  .getElementById("popupPresente")
-  .addEventListener("click", (e) => {
-    if (e.target.id === "popupPresente") {
-      e.target.classList.remove("ativo");
-    }
-  });
+document.getElementById("overlay").addEventListener("click", () => {
+  document.getElementById("popupPresente").style.display = "none";
+  document.getElementById("overlay").style.display = "none";
+});
