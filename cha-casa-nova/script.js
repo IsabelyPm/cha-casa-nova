@@ -131,37 +131,21 @@ if (selecionado) {
     <span class="nome">Selecionar</span>
   `;
 
-  // ✅ CLIQUE SÓ PARA ITENS NÃO SELECIONADOS
-  itemDiv.addEventListener("click", async () => {
-    const nomeUsuario = prompt("Digite seu nome:");
-    if (!nomeUsuario) return;
+itemDiv.addEventListener("click", () => {
 
-    try {
- const formData = new FormData();
-formData.append("tipo", "presente");
-formData.append("categoria", categoria);
-formData.append("item", item);
-formData.append("nome", nomeUsuario);
+  // se já estiver selecionado, não faz nada
+  if (itemDiv.classList.contains("selecionado")) return;
 
-await fetch(URL, {
-  method: "POST",
-  body: formData
+  // guarda informações do item clicado
+  window.categoriaSelecionada = categoria;
+  window.itemSelecionado = item;
+  window.itemDivAtual = itemDiv;
+
+  // abre popup decorado
+  document
+    .getElementById("popupPresente")
+    .classList.add("ativo");
 });
-      // 👉 Atualiza visualmente SÓ este item
-      itemDiv.classList.add("selecionado");
-      itemDiv.innerHTML = `
-        <span class="item-text">
-          <i class="fa-solid fa-check"></i>
-          ${item}
-        </span>
-        <span class="nome">${nomeUsuario}</span>
-      `;
-
-    } catch (e) {
-      alert("Erro ao salvar. Tente novamente.");
-      console.error(e);
-    }
-  });
 }
 
 container.appendChild(itemDiv);
@@ -220,11 +204,16 @@ async function confirmarPresente() {
 
   if (!nomeUsuario) {
     input.style.borderColor = "#fa5252";
+    input.focus();
     return;
   }
 
   input.style.borderColor = "#c9b199";
-  document.getElementById("popupPresente").style.display = "none";
+
+  // fecha popup
+  document
+    .getElementById("popupPresente")
+    .classList.remove("ativo");
 
   try {
     const formData = new FormData();
@@ -238,7 +227,7 @@ async function confirmarPresente() {
       body: formData
     });
 
-    // 👉 Atualiza visualmente o item correto
+    // atualiza visual do item
     window.itemDivAtual.classList.add("selecionado");
     window.itemDivAtual.innerHTML = `
       <span class="item-text">
@@ -248,6 +237,7 @@ async function confirmarPresente() {
       <span class="nome">${nomeUsuario}</span>
     `;
 
+    // limpa campo
     input.value = "";
 
   } catch (e) {
@@ -255,3 +245,10 @@ async function confirmarPresente() {
     console.error(e);
   }
 }
+document
+  .getElementById("popupPresente")
+  .addEventListener("click", (e) => {
+    if (e.target.id === "popupPresente") {
+      e.target.classList.remove("ativo");
+    }
+  });
