@@ -509,3 +509,100 @@ h2 {
   0%, 100% { opacity: 0.5; }
   50% { opacity: 1; }
 }
+
+/* =========================
+   RESPONSIVO – CELULAR
+========================= */
+@media (max-width: 768px) {
+
+  body {
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 36px;
+    letter-spacing: 2px;
+  }
+
+  h2 {
+    font-size: 42px;
+  }
+
+  .titulo-principal {
+    font-size: 26px;
+  }
+
+  .titulo-principal span {
+    font-size: 14px;
+  }
+
+  .topo-titulo img {
+    width: 48px;
+  }
+
+  .data-evento {
+    font-size: 22px;
+    gap: 10px;
+  }
+
+  .data-evento span {
+    font-size: 18px;
+  }
+
+  .item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .item-text {
+    font-size: 18px;
+  }
+
+  .nome {
+    font-size: 18px;
+  }
+
+  .acoes {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .acao-btn {
+    width: 100%;
+    font-size: 14px;
+    padding: 14px;
+  }
+
+  .acao-box {
+    padding: 16px;
+  }
+
+  .pix-box {
+    max-width: 100%;
+  }
+
+  .paleta-cores {
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .cor {
+    width: 56px;
+    height: 56px;
+  }
+
+  .titulo-paleta {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .versiculo {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+  }
+
+  .loading-text {
+    font-size: 20px;
+  }
+}
