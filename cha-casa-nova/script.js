@@ -140,7 +140,7 @@ itemDiv.addEventListener("click", (e) => {
   const popup = document.getElementById("popupPresente");
   const overlay = document.getElementById("overlay");
 
-overlay.style.display = "block";
+ overlay.style.display = "block";
 popup.style.display = "block";
 
 // 📱 MOBILE → CENTRAL FIXO
@@ -171,6 +171,7 @@ if (y + popupHeight > window.innerHeight) {
 popup.style.left = `${x}px`;
 popup.style.top = `${y}px`;
 popup.style.transform = "none";
+
 });
 }
 
@@ -272,7 +273,7 @@ async function confirmarPresente() {
     console.error(e);
   }
   
-  document.getElementById("overlay").style.display = "none";
+  
 }
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("overlay");
