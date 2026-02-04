@@ -1,13 +1,20 @@
 body {
-  background: #f8f4ee;
   font-family: 'Playfair Display', serif;
   color: #6b4b2a;
   margin: 0;
   padding: 20px;
-  visibility: hidden;
+
+  background: linear-gradient(
+    120deg,
+    #f8f4ee,
+    #f1e6d8,
+    #f8f4ee
+  );
+  background-size: 300% 300%;
+  animation:
+    bgMove 12s ease infinite,
+    fadeIn 1.2s ease forwards;
 }
-
-
   
 
 .convite {
@@ -607,9 +614,6 @@ h2 {
   }
 }
 
-body {
-  animation: fadeIn 1.2s ease forwards;
-}
 
 @keyframes fadeIn {
   from {
@@ -649,16 +653,7 @@ body {
 .acao-btn:hover::after {
   left: 100%;
 }
-body {
-  background: linear-gradient(
-    120deg,
-    #f8f4ee,
-    #f1e6d8,
-    #f8f4ee
-  );
-  background-size: 300% 300%;
-  animation: bgMove 12s ease infinite;
-}
+
 
 @keyframes bgMove {
   0% { background-position: 0% 50%; }
@@ -678,5 +673,43 @@ body {
   to {
     opacity: 1;
     transform: scaleX(1);
+  }
+
+}
+/* POPUP PRESENTE */
+#popupPresente {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  backdrop-filter: blur(3px);
+}
+
+#popupPresente.ativo {
+  display: flex;
+}
+
+#popupPresente .popup-content {
+  background: #fff;
+  padding: 35px 40px;
+  border-radius: 22px;
+  text-align: center;
+  color: #7a5c3e;
+  max-width: 360px;
+  width: 90%;
+  animation: popElegant .45s ease;
+}
+
+@keyframes popElegant {
+  from {
+    transform: scale(.7) translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
   }
 }
