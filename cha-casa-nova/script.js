@@ -133,35 +133,35 @@ if (selecionado) {
 
 itemDiv.addEventListener("click", (e) => {
 
-  if (itemDiv.classList.contains("selecionado")) return;
-
-  window.categoriaSelecionada = categoria;
   window.itemSelecionado = item;
+  window.categoriaSelecionada = categoria;
   window.itemDivAtual = itemDiv;
 
   const popup = document.getElementById("popupPresente");
 
-  // posição do clique
   let x = e.clientX;
   let y = e.clientY;
 
-  // tamanho do popup
-  const popupWidth = 300;
-  const popupHeight = 220;
+  // 🛡️ proteção para não sair da tela
+  const popupWidth = 360;
+  const popupHeight = 260;
 
-  // evita sair da tela
   if (x + popupWidth > window.innerWidth) {
-    x = window.innerWidth - popupWidth - 16;
+    x = window.innerWidth - popupWidth - 20;
   }
 
   if (y + popupHeight > window.innerHeight) {
-    y = window.innerHeight - popupHeight - 16;
+    y = window.innerHeight - popupHeight - 20;
   }
-
+if (window.innerWidth < 768) {
+  popup.style.left = "50%";
+  popup.style.top = "50%";
+  popup.style.transform = "translate(-50%, -50%)";
+  return;
+}
   popup.style.left = `${x}px`;
   popup.style.top = `${y}px`;
-
-  popup.classList.add("ativo");
+  popup.style.display = "block";
 });
 }
 
