@@ -1,6 +1,6 @@
 const loading = document.getElementById("loading-lista");
 
-const URL = "https://script.google.com/macros/s/AKfycbwQlWVTwTanSZveoJpC4RHQMHEdrRbcF9TFnK_VTEnt9KearcGZ7lTzzMZhmdvg35U/exec";
+const URL = "https://script.google.com/macros/s/AKfycbyfiXqQjwHo90FLvWOaTg2X40lZPmFAK0leRqZQogFlRchgUUICE2L254ffC_d2Vmbbvw/exec";
 const iconesPorItem = {
   // COZINHA
   "Cafeteira": { tipo: "fa", icon: "fa-mug-hot" },
