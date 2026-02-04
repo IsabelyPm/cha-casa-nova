@@ -131,17 +131,38 @@ if (selecionado) {
     <span class="nome">Selecionar</span>
   `;
 
-itemDiv.addEventListener("click", () => {
-  window.itemSelecionado = item;
-  window.categoriaSelecionada = categoria;
-  window.itemDivAtual = itemDiv;
+  // ✅ CLIQUE SÓ PARA ITENS NÃO SELECIONADOS
+  itemDiv.addEventListener("click", async () => {
+    const nomeUsuario = prompt("Digite seu nome:");
+    if (!nomeUsuario) return;
 
-  const popup = document.getElementById("popupPresente");
-  const overlay = document.getElementById("overlay");
+    try {
+ const formData = new FormData();
+formData.append("tipo", "presente");
+formData.append("categoria", categoria);
+formData.append("item", item);
+formData.append("nome", nomeUsuario);
 
-  overlay.style.display = "flex";
-  popup.style.display = "block";
+await fetch(URL, {
+  method: "POST",
+  body: formData
 });
+
+      // 👉 Atualiza visualmente SÓ este item
+      itemDiv.classList.add("selecionado");
+      itemDiv.innerHTML = `
+        <span class="item-text">
+          <i class="fa-solid fa-check"></i>
+          ${item}
+        </span>
+        <span class="nome">${nomeUsuario}</span>
+      `;
+
+    } catch (e) {
+      alert("Erro ao salvar. Tente novamente.");
+      console.error(e);
+    }
+  });
 }
 
 container.appendChild(itemDiv);
@@ -200,16 +221,11 @@ async function confirmarPresente() {
 
   if (!nomeUsuario) {
     input.style.borderColor = "#fa5252";
-    input.focus();
     return;
   }
 
   input.style.borderColor = "#c9b199";
-
-  // fecha popup
-  document
-    .getElementById("popupPresente")
-    .classList.remove("ativo");
+  document.getElementById("popupPresente").style.display = "none";
 
   try {
     const formData = new FormData();
@@ -221,10 +237,9 @@ async function confirmarPresente() {
     await fetch(URL, {
       method: "POST",
       body: formData
-      
     });
 
-    // atualiza visual do item
+    // 👉 Atualiza visualmente o item correto
     window.itemDivAtual.classList.add("selecionado");
     window.itemDivAtual.innerHTML = `
       <span class="item-text">
@@ -234,7 +249,6 @@ async function confirmarPresente() {
       <span class="nome">${nomeUsuario}</span>
     `;
 
-    // limpa campo
     input.value = "";
 
   } catch (e) {
@@ -242,9 +256,3 @@ async function confirmarPresente() {
     console.error(e);
   }
 }
-document.getElementById("overlay").addEventListener("click", (e) => {
-  document.getElementById("popupPresente").style.display = "none";
-  if (e.target.id === "overlay") {
-    document.getElementById("overlay").style.display = "none";
-  }
-});
