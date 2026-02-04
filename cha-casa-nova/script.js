@@ -131,20 +131,37 @@ if (selecionado) {
     <span class="nome">Selecionar</span>
   `;
 
-itemDiv.addEventListener("click", () => {
+itemDiv.addEventListener("click", (e) => {
 
-  // se já estiver selecionado, não faz nada
   if (itemDiv.classList.contains("selecionado")) return;
 
-  // guarda informações do item clicado
   window.categoriaSelecionada = categoria;
   window.itemSelecionado = item;
   window.itemDivAtual = itemDiv;
 
-  // abre popup decorado
-  document
-    .getElementById("popupPresente")
-    .classList.add("ativo");
+  const popup = document.getElementById("popupPresente");
+
+  // posição do clique
+  let x = e.clientX;
+  let y = e.clientY;
+
+  // tamanho do popup
+  const popupWidth = 300;
+  const popupHeight = 220;
+
+  // evita sair da tela
+  if (x + popupWidth > window.innerWidth) {
+    x = window.innerWidth - popupWidth - 16;
+  }
+
+  if (y + popupHeight > window.innerHeight) {
+    y = window.innerHeight - popupHeight - 16;
+  }
+
+  popup.style.left = `${x}px`;
+  popup.style.top = `${y}px`;
+
+  popup.classList.add("ativo");
 });
 }
 
