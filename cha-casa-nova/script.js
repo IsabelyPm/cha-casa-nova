@@ -1,5 +1,6 @@
 const loading = document.getElementById("loading-lista");
-
+let itemSelecionado = null;
+let categoriaSelecionada = null;
 const URL = "https://script.google.com/macros/s/AKfycbyfiXqQjwHo90FLvWOaTg2X40lZPmFAK0leRqZQogFlRchgUUICE2L254ffC_d2Vmbbvw/exec";
 const iconesPorItem = {
   // COZINHA
@@ -213,3 +214,44 @@ function copiarPix() {
 window.addEventListener("load", () => {
   document.body.style.visibility = "visible";
 });
+async function confirmarPresente() {
+  const input = document.getElementById("nomePresente");
+  const nomeUsuario = input.value.trim();
+
+  if (!nomeUsuario) {
+    input.style.borderColor = "#fa5252";
+    return;
+  }
+
+  input.style.borderColor = "#c9b199";
+  document.getElementById("popupPresente").style.display = "none";
+
+  try {
+    const formData = new FormData();
+    formData.append("tipo", "presente");
+    formData.append("categoria", window.categoriaSelecionada);
+    formData.append("item", window.itemSelecionado);
+    formData.append("nome", nomeUsuario);
+
+    await fetch(URL, {
+      method: "POST",
+      body: formData
+    });
+
+    // 👉 Atualiza visualmente o item correto
+    window.itemDivAtual.classList.add("selecionado");
+    window.itemDivAtual.innerHTML = `
+      <span class="item-text">
+        <i class="fa-solid fa-check"></i>
+        ${window.itemSelecionado}
+      </span>
+      <span class="nome">${nomeUsuario}</span>
+    `;
+
+    input.value = "";
+
+  } catch (e) {
+    alert("Erro ao salvar. Tente novamente.");
+    console.error(e);
+  }
+}
